@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "221687437932-7bflp6utgceucl3dog2nu90mns0olrbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitwork",
+            "certificate_hash": "2fdeebf2167ffd4adc83fc651574dac24203ae7f"
+          }
+        },
+        {
           "client_id": "221687437932-eiqsa2idfo8qebkcjbin9qku4mkgg549.apps.googleusercontent.com",
           "client_type": 3
         }
