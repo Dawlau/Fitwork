@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "221687437932",
+    "project_id": "my-project-1563888022555",
+    "storage_bucket": "my-project-1563888022555.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221687437932:android:719db5a70c3af6c5a9d649",
+        "android_client_info": {
+          "package_name": "com.example.fitwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221687437932-eiqsa2idfo8qebkcjbin9qku4mkgg549.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXb1kn0ohtfHIMPrse1v7u4Sd9Z_kTOkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221687437932-eiqsa2idfo8qebkcjbin9qku4mkgg549.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
