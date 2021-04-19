@@ -51,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> usr = new HashMap<>();
-        usr.put("first", "Ada");
-        usr.put("last", "Lovelace");
-        usr.put("born", 1815);
+        usr.put("first", "Gica");
+        usr.put("last", "Ambrozie");
+        usr.put("born", 1099);
         String TAG = "TEST :";
         db.collection("users")
                 .add(usr)
