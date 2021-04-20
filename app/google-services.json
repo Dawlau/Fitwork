@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "221687437932-osutngd1g164cecvb277q98067vkksgi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitwork",
+            "certificate_hash": "49f8e00b5d963753e664462e383cb85bd05562aa"
+          }
+        },
+        {
           "client_id": "221687437932-eiqsa2idfo8qebkcjbin9qku4mkgg549.apps.googleusercontent.com",
           "client_type": 3
         }

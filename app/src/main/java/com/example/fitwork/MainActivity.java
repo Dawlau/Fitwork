@@ -27,8 +27,29 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int RC_SIGN_IN = 123;
+    //TODO: Add splash screen
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Intent intent;
 
+        //Checks if the user is authenticated
+        //case 1: the user is authenticated and he is sent to the Dashboard screen
+        //case 2: the user is not authenitcated and he is sent to the sign in screen
+        if (user == null) {
+            intent = new Intent(this, GoogleAuth.class);
+        }
+        else {
+            intent = new Intent(this, DashboardActivity.class);
+        }
+        startActivity(intent);
+    }
+
+
+    //LEGACY CODE
+    /*
+    private static final int RC_SIGN_IN = 123;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,6 +184,8 @@ public class MainActivity extends AppCompatActivity {
                 RC_SIGN_IN);
         // [END auth_fui_pp_tos]
     }
+
+    */
 
 
 
