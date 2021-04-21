@@ -76,12 +76,9 @@ public class GoogleAuth extends Activity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 // Google Sign In was successful, authenticate with Firebase
-                // send user to the Dashboardscreen
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
-                intent = new Intent(this, DashboardActivity.class);
-                startActivity(intent);
             } catch (ApiException e) {
                 // Google Sign In failed
                 // send user to the sign in screen
@@ -100,14 +97,27 @@ public class GoogleAuth extends Activity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        Intent intent;
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Sign in success
+                            // if this is a new user, send him to the user details screen
+                            // otherwise, send him to the dashboard screen
+                            // TODO: send new user to user details screen
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
+                            //if (isNewUser)
+                            //    intent = new Intent(GoogleAuth.this, UserDetailsActivity.class);
+                            //else
+                            intent = new Intent(GoogleAuth.this, DashboardActivity.class);
+                            startActivity(intent);
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
+                            // TODO: add sign in failed message in-app
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            intent = new Intent(GoogleAuth.this, GoogleAuth.class);
+                            startActivity(intent);
                             //updateUI(null);
                         }
                     }
