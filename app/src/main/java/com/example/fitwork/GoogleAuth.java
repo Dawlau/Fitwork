@@ -13,12 +13,22 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import Models.PrivateProfile;
+import Models.Profile;
 
 public class GoogleAuth extends Activity {
     private static final String TAG = "GoogleActivity";
@@ -43,6 +53,7 @@ public class GoogleAuth extends Activity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
 
 
         //Button listener
@@ -106,10 +117,10 @@ public class GoogleAuth extends Activity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
-                            //if (isNewUser)
-                            //    intent = new Intent(GoogleAuth.this, UserDetailsActivity.class);
-                            //else
-                            intent = new Intent(GoogleAuth.this, DashboardActivity.class);
+                            if (isNewUser)
+                                intent = new Intent(GoogleAuth.this, UserDetailsActivity.class);
+                            else
+                                intent = new Intent(GoogleAuth.this, DashboardActivity.class);
                             startActivity(intent);
                             //updateUI(user);
                         } else {
@@ -127,6 +138,9 @@ public class GoogleAuth extends Activity {
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+
+
+
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 

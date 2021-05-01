@@ -4,6 +4,8 @@ public class Profile {
 
     private String UID;
     private String birthday;
+    private PublicProfile publicProfile;
+    private PrivateProfile privateProfile;
 
     public Profile(){
         this.UID = "";
@@ -25,6 +27,22 @@ public class Profile {
 
     public String getBirthday() {
         return birthday;
+    }
+
+    public PublicProfile getPublicProfile() {
+        return publicProfile;
+    }
+
+    public void setPublicProfile(PublicProfile publicProfile) {
+        this.publicProfile = publicProfile;
+    }
+
+    public PrivateProfile getPrivateProfile() {
+        return privateProfile;
+    }
+
+    public void setPrivateProfile(PrivateProfile privateProfile) {
+        this.privateProfile = privateProfile;
     }
 
     public void setBirthday(String birthday) {
