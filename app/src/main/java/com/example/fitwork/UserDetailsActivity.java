@@ -15,8 +15,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+
 import Models.PrivateProfile;
 import Models.Profile;
+import Models.Proportions;
 
 public class UserDetailsActivity extends Activity {
     private Button submitButton;
@@ -33,11 +36,7 @@ public class UserDetailsActivity extends Activity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Profile profile = new Profile(user.getUid(), "1999"); ////////////aici pui din form
-        PrivateProfile privateProfile = new PrivateProfile();
-        privateProfile.setHeight(180.8); ////////////////////aici pui din form
-        privateProfile.setWeight(88); //////////////////aici pui din form
 
-        profile.setPrivateProfile(privateProfile);
 
 
         String TAG = "TEST :";
@@ -46,6 +45,35 @@ public class UserDetailsActivity extends Activity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        documentReference.collection("privateProfile")
+                                .add(new HashMap<>())
+                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference2) {
+                                        documentReference2.collection("proportions")
+                                                .add(new Proportions(188,88))
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                                          @Override
+                                                                          public void onSuccess(DocumentReference documentReference3) {
+                                                                              Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                                                          }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.w(TAG, "Error adding document", e);
+                                                    }
+                                                });
+                                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error adding document", e);
+                                    }
+                                });
+
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                     }
                 })
