@@ -5,7 +5,6 @@ public class Profile {
     private String UID;
     private String birthday;
 
-
     public Profile(){
         this.UID = "";
         this.birthday = "";
@@ -27,8 +26,6 @@ public class Profile {
     public String getBirthday() {
         return birthday;
     }
-
-
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
