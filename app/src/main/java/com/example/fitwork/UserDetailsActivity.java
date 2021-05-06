@@ -49,7 +49,7 @@ public class UserDetailsActivity extends Activity {
                                     @Override
                                     public void onSuccess(DocumentReference documentReference2) {
                                         documentReference2.collection("proportions")
-                                                .add(new Proportions(188,88))
+                                                .add(new Proportions())
                                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                                           @Override
                                                                           public void onSuccess(DocumentReference documentReference3) {

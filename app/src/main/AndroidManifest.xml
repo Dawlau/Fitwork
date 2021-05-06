@@ -21,6 +21,15 @@
         <activity android:name=".DashboardActivity">
 
         </activity>
+        <activity android:name=".UserDetailsFirstActivity">
+
+        </activity>
+        <activity android:name=".UserDetailsSecondActivity">
+
+        </activity>
+        <activity android:name=".UserDetailsThirdActivity">
+
+        </activity>
         <activity android:name=".UserDetailsActivity">
 
         </activity>

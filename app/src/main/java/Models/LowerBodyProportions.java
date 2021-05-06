@@ -2,14 +2,14 @@ package Models;
 
 import java.io.Serializable;
 
-public class lowerBodyProportions implements Serializable {
+public class LowerBodyProportions implements Serializable {
     private double thighCirc;
     private double calfCirc;
 
-    public lowerBodyProportions() {
+    public LowerBodyProportions() {
     }
 
-    public lowerBodyProportions(double thighCirc, double calfCirc) {
+    public LowerBodyProportions(double thighCirc, double calfCirc) {
         this.thighCirc = thighCirc;
         this.calfCirc = calfCirc;
     }

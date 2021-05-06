@@ -2,7 +2,7 @@ package Models;
 
 import java.io.Serializable;
 
-public class upperBodyProportions implements Serializable {
+public class UpperBodyProportions implements Serializable {
 
     private double chestWidth;
     private double backWidth;
@@ -10,10 +10,10 @@ public class upperBodyProportions implements Serializable {
     private double bicepsCirc;
     private double tricepsCirc;
 
-    public upperBodyProportions() {
+    public UpperBodyProportions() {
     }
 
-    public upperBodyProportions(double chestWidth, double backWidth, double shoulderWidth, double bicepsCirc, double tricepsCirc) {
+    public UpperBodyProportions(double chestWidth, double backWidth, double shoulderWidth, double bicepsCirc, double tricepsCirc) {
         this.chestWidth = chestWidth;
         this.backWidth = backWidth;
         this.shoulderWidth = shoulderWidth;
