@@ -37,8 +37,6 @@ public class UserDetailsActivity extends Activity {
 
         Profile profile = new Profile(user.getUid(), "1999"); ////////////aici pui din form
 
-
-
         String TAG = "TEST :";
         db.collection("profiles")
                 .add(profile)
