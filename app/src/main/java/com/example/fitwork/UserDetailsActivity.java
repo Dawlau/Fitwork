@@ -20,8 +20,8 @@ import java.util.HashMap;
 import Models.PrivateProfile;
 import Models.Profile;
 import Models.Proportions;
-import Models.lowerBodyProportions;
-import Models.upperBodyProportions;
+import Models.LowerBodyProportions;
+import Models.UpperBodyProportions;
 
 public class UserDetailsActivity extends Activity {
     private Button submitButton;
@@ -53,7 +53,7 @@ public class UserDetailsActivity extends Activity {
                                         documentReference2.collection("proportions")
 
 
-                                                .add(new Proportions(188,88, new upperBodyProportions(), new lowerBodyProportions()))
+                                                .add(new Proportions(188,88, new UpperBodyProportions(), new LowerBodyProportions()))
 
                                                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                                           @Override
