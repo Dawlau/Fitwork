@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">fitwork</string>
+    <string name="height">height</string>
+    <string name="weight">weight</string>
+    <string name="next">next</string>
+    <string name="submit">submit</string>
+    <string name="userFormInfo">Please fill in the following fields</string>
+    <string name="chest">chest width</string>
+    <string name="back">back width</string>
+    <string name="shoulders">shoulders width</string>
+    <string name="biceps">biceps circumference</string>
+    <string name="triceps">triceps circumference</string>
+    <string name="thigh">thigh circumference</string>
+    <string name="calf">calf circumference</string>
 </resources>

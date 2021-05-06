@@ -1,6 +1,8 @@
 package Models;
 
-public class Profile {
+import java.io.Serializable;
+
+public class Profile implements Serializable {
 
     private String UID;
     private String birthday;

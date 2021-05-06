@@ -5,16 +5,16 @@ import java.io.Serializable;
 public class Proportions implements Serializable {
 
     private double height;
-    private double width;
-    private upperBodyProportions upper;
-    private lowerBodyProportions lower;
+    private double weight;
+    private UpperBodyProportions upper;
+    private LowerBodyProportions lower;
 
     public Proportions() {
     }
 
-    public Proportions(double height, double width, upperBodyProportions upper, lowerBodyProportions lower) {
+    public Proportions(double height, double weight, UpperBodyProportions upper, LowerBodyProportions lower) {
         this.height = height;
-        this.width = width;
+        this.weight = weight;
         this.upper = upper;
         this.lower = lower;
     }
@@ -27,27 +27,27 @@ public class Proportions implements Serializable {
         this.height = height;
     }
 
-    public double getWidth() {
-        return width;
+    public double getWeight() {
+        return weight;
     }
 
-    public void setWidth(double width) {
-        this.width = width;
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
-    public upperBodyProportions getUpper() {
+    public UpperBodyProportions getUpper() {
         return upper;
     }
 
-    public void setUpper(upperBodyProportions upper) {
+    public void setUpper(UpperBodyProportions upper) {
         this.upper = upper;
     }
 
-    public lowerBodyProportions getLower() {
+    public LowerBodyProportions getLower() {
         return lower;
     }
 
-    public void setLower(lowerBodyProportions lower) {
+    public void setLower(LowerBodyProportions lower) {
         this.lower = lower;
     }
 }

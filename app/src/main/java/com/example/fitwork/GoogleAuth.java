@@ -118,7 +118,7 @@ public class GoogleAuth extends Activity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             boolean isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
                             if (isNewUser)
-                                intent = new Intent(GoogleAuth.this, UserDetailsActivity.class);
+                                intent = new Intent(GoogleAuth.this, UserDetailsFirstActivity.class);
                             else
                                 intent = new Intent(GoogleAuth.this, DashboardActivity.class);
                             startActivity(intent);
