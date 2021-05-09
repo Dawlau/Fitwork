@@ -1,0 +1,62 @@
+[
+	{
+        "name":"Bench Dip",
+        "description": "Place a bench behind your back and hold on to its edge with your hands fully extended at around shoulder width. The legs will be extended at around shoulder width. The legs will be extended forward while you're bent at the waist. This is your starting position.\nSlowly lower your body by bending at the elbows until your arms are close to a 90 degree angle. Keep your elbows as close as possible to your torso throughout the movement.\nUser your triceps to bring your torso up and back to the starting position.\nNOTE: To increase the difficulty for this exercise, have an exercise partner place a weight plate on your lap.",
+		"category":"arms",
+        "muscle_groups":["triceps", "deltoids", "chest"]
+    },
+	{
+		"name":"Bicep Curl (Dumbbell)",
+		"description":"Stand tall with your feet shoulder-width apart, holding a dumbbell in each hand.\nHolding the upper arm stationary, curl the right weight with the palm facing forward. Lift the dumbbell toward the shoulder until the biceps is fully contracted. Hold this position for a second and squeeze the bicep.\nLower the right dumbbell to the starting position and repeat the same movement with the left dumbbell.",
+		"category":"arms",
+		"muscle_groups":["biceps brachii", "brachialis", "brachioradialis"]
+	},
+	{
+		"name":"Crunch",
+		"description":"Lie flat on a mat with knees bent at a 90 degree angle. Place fingers at the side of the head with shoulders lifted slightly above the floor.\nContract the abdominal muscles and raisethe soulders off the floor about 4 to 6 inches.\nHold the position at the top and slowly lower back to the starting position while breathing out.",
+		"category":"core",
+		"muscle_groups":["abdominals", "rectus abdominis", "obliques"]
+	},
+	{
+		"name":"Bicycle Crunch",
+		"description":"Lie on a mat with hands behind the head and lift shoulders off the ground.\nAlternating between sides, touch the end of your left elbow to your right knee as you twist your torso and bring the kneww to the upper chest. During this movement simultaneously straighten the opposite leg.\nKeep core tight during the movement and alternate the right arm and the left leg.",
+		"category":"core",
+		"muscle_groups":["abdominals", "rectus abdominis", "obliques"]
+	},
+	{
+		"name":"Mountain Climber",
+		"description":"Starting in pushup position, with hands under shoulders and legs extended behind you.\nBring knee of the left leg upward towards the chest.\nWhen leg is fully contracted under the body, extend the left leg while contracted to the right leg in quick succession.",
+		"category":"legs",
+		"muscle_groups":["quads", "hamstrings", "abdominals"]
+	},
+	{
+		"name":"Squat",
+		"description":"Stand tall, looking forward, with your feet shoulder-width apart and pointed slightly outwards.\nMove your butt backwards as you descend and keep your knees slighly outward.\nLook straight ahead, open your chest and relax your shoulders. Put your hands straight out in front of you. Keep your heels on the floor.\nAs you go up, push from your heels.",
+		"category":"legs",
+		"muscle_groups":["gluteus", "quadriceps", "hamstrings"]
+	},
+	{
+		"name":"Push-up",
+		"description":"Begin in a prone position, with your hands placed slightly sider than your shoulders.\nStraighten your arms and legs.\nLower your body until your chest nearly touches the floor.\nPause, then push yourself back up.\nNote: for increased dificulty you can pause for a longer period of time or you can place some weights on your lower back.",
+		"category":"chest",
+		"muscle_groups":["pectoral muscles", "triceps", "anterior deltoids"]
+	},
+	{
+		"name":"Bench Press (Dumbbell)",
+		"description":"Begin sitting on a flat bench with dumbbells resting in your lower thighs.\nStart by holding the dumbbells slighly sider than shoulder width apart above your shoulders. Keep your palms facing forward.\nSlowly bend your elbows until they are at a 90 degree angle and your upper arms are parallel to the ground.\nPush the weights up by straightening your arms. As you push the weights up, move your arms in an arc to bring the dumbbells together, until they meet over the center of your chest. Hold for a second.\nLower the dumbbells by slowly bending your elbows back at the 90 degrees. Continue lowering your arms until they are a little lower than parallel to the floor.",
+		"category":"chest",
+		"muscle_groups":["pectoral muscles", "anterior deltoids", "triceps"]
+	},
+	{
+		"name":"Lateral Raise (Dumbbell)",
+		"description":"Stand tall with your feet shoulder-width apart, holding a dumbbell in each hand.\nRaise your arms to your sides at the level of your shoulders, keeping your palms facing downward.\nSlowly lower your arms.",
+		"category":"shoulders",
+		"muscle_groups":["lateral deltoids", "anterior deltoids", "posterior deltoids"]
+	},
+	{
+		"name":"Front Raise (Band)",
+		"description":"Grasp exercise band handles in a pronated grip standing with feet shoulder width.\nWith arm straight, lift the handle as you exhale.\nHold the upper position and inhale moving back to the starting position.",
+		"category":"shoulders",
+		"muscle_groups":["deltoids", "serratus"]
+	}
+]

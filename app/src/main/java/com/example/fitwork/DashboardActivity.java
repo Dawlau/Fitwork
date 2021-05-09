@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class DashboardActivity extends Activity {
     private Button signOutButton;
     private Button createExercisesFormButton;
+    private Button createWorkoutFormButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,14 @@ public class DashboardActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardActivity.this, CreateExerciseActivity.class));
+            }
+        });
+
+        createWorkoutFormButton = (Button) findViewById((R.id.CreateWorkoutButton));
+        createWorkoutFormButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, CreateWorkoutActivity.class));
             }
         });
     }
