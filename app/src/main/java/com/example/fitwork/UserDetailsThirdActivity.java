@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -56,11 +57,13 @@ public class UserDetailsThirdActivity extends Activity {
 
                 String TAG = "TEST :";
                 db.collection("profiles")
-                        .add(userProfile)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        .document(userProfile.getUID())
+                        .set(userProfile)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                documentReference.collection("privateProfile")
+                            public void onSuccess(Void aVoid) {
+                                CollectionReference userProfileRef = db.collection("profiles").document(userProfile.getUID()).collection("privateProfile");
+                                        userProfileRef
                                         .add(new HashMap<>())
                                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                             @Override
@@ -70,7 +73,7 @@ public class UserDetailsThirdActivity extends Activity {
                                                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                             @Override
                                                             public void onSuccess(DocumentReference documentReference3) {
-                                                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference3.getId());
                                                             }
                                                         })
                                                         .addOnFailureListener(new OnFailureListener() {
@@ -79,7 +82,7 @@ public class UserDetailsThirdActivity extends Activity {
                                                                 Log.w(TAG, "Error adding document", e);
                                                             }
                                                         });
-                                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference2.getId());
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
@@ -89,7 +92,7 @@ public class UserDetailsThirdActivity extends Activity {
                                             }
                                         });
 
-                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                Log.d(TAG, "DocumentSnapshot added with ID: " + userProfile.getUID());
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
