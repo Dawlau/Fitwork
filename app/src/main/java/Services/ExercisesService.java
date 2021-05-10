@@ -1,25 +1,29 @@
 package Services;
 
+import android.renderscript.ScriptGroup;
 import android.util.Log;
+
 
 import androidx.annotation.NonNull;
 
+import com.example.fitwork.ContextManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-import org.json.*;
-
 import Models.Exercise;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class ExercisesService {
 
@@ -27,34 +31,87 @@ public class ExercisesService {
 
     private ExercisesService() {}
 
-    private String readJSON(String FileName) {
+    private String readJSON() {
 
-        try (BufferedReader buffer = new BufferedReader(new FileReader(FileName))) {
+        String json = null;
+        try{
+            InputStream is = ContextManager.getContext().getAssets().open("exercises.json");
 
-            String line = buffer.readLine();
-            StringBuilder content = new StringBuilder();
+            int size = is.available();
+            byte[] buffer = new byte[size];
 
-            while (line != null) {
-                content.append(line).append("\n");
-                line = buffer.readLine();
-            }
+            is.read(buffer);
+            is.close();
 
-            return content.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
+            json = new String(buffer, StandardCharsets.UTF_8);
+        }catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
         }
 
-        return "";
+        return json;
     }
 
-    private ArrayList<Exercise> loadJSON(String FileName) {
+    private ArrayList<Exercise> loadJSON()  {
 
-        String contentJSON = readJSON(FileName);
+        String contentJSON = readJSON();
+        ArrayList<Exercise> exercises = new ArrayList<>();
 
-        //Log.d("Debug", contentJSON);
+        try{
 
-        return new ArrayList<>();
+            JSONArray jsonExercises = new JSONArray(contentJSON);
+
+            for(int i = 0; i < jsonExercises.length(); ++i){
+
+                JSONObject jsonObject = (JSONObject) jsonExercises.get(i);
+
+                String exerciseName = jsonObject.get("name").toString();
+                String exerciseDescription = jsonObject.get("description").toString();
+                ArrayList<String> exercise_muscleGroups = new ArrayList<>();
+
+                JSONArray jsonMuscleGroups = (JSONArray)jsonObject.get("muscle_groups");
+                for(int j = 0; j < jsonMuscleGroups.length(); ++j){
+
+                    String muscleGroup = jsonMuscleGroups.get(j).toString();
+                    exercise_muscleGroups.add(muscleGroup);
+                }
+
+                Exercise exercise = new Exercise(
+                        exerciseName,
+                        exerciseDescription,
+                        exercise_muscleGroups
+                );
+
+                exercises.add(exercise);
+            }
+
+        }catch (JSONException e){
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+
+        return exercises;
     }
+
+    private void loadToDatabase(ArrayList<Exercise> exercises){
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        for(Exercise exercise : exercises)
+            db.collection("exercises").add(exercise)
+                    .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                            if(task.isSuccessful()){
+                                Log.d("Debug", "Added exercise to database successfully");
+                            }
+                            else{
+                                Log.d("Debug", "Error on adding exercise with name: " + exercise.getName());
+                            }
+                        }
+                    });
+    }
+
 
     public static ExercisesService getInstance(){
 
@@ -63,24 +120,9 @@ public class ExercisesService {
         return singleton;
     }
 
-    public void loadExercises(String FileName) {
+    public void loadExercisesFromJSON() {
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        loadJSON(FileName);
-
-//        db.collection("exercises")
-//                .add()
-//                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentReference> task) {
-//                        if(task.isSuccessful()){
-//
-//                        }
-//                        else{
-//
-//                        }
-//                    }
-//                })
+        ArrayList<Exercise> exercises = loadJSON();
+        loadToDatabase(exercises);
     }
 }

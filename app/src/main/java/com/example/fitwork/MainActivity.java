@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent;
 
-        ExercisesService s = ExercisesService.getInstance();
-        s.loadExercises("/home/dawlau/AndroidProjects/Fitwork/app/src/main/res/Resources/exercises.json");
-
         //Checks if the user is authenticated
         //case 1: the user is authenticated and he is sent to the Dashboard screen
         //case 2: the user is not authenitcated and he is sent to the sign in screen
