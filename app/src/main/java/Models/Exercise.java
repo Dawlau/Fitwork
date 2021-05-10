@@ -44,4 +44,15 @@ public class Exercise {
     public void setMuscleGroups(List<String> muscleGroups) {
         this.muscleGroups = muscleGroups;
     }
+
+    @Override
+    public String toString() { // for testing purposes
+        StringBuilder representation = new StringBuilder();
+
+        representation.append("Name: ").append(name).append("; Description: ").append(description).append("; Muscle groups ");
+        for(String muscleGroup : muscleGroups)
+            representation.append(muscleGroup).append(" ");
+
+        return representation.toString();
+    }
 }
