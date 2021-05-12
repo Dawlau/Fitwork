@@ -7,6 +7,7 @@ public class Exercise {
 
     private String name;
     private String description;
+    private String category;
     private List<String> muscleGroups; // does not need a copy in constructor/getter since it is only used for CRUD
 
     public Exercise(){
@@ -15,9 +16,10 @@ public class Exercise {
         this.muscleGroups = Collections.emptyList();
     }
 
-    public Exercise(String name, String description, List<String> muscleGroups) {
+    public Exercise(String name, String description, String category, List<String> muscleGroups) {
         this.name = name;
         this.description = description;
+        this.category = category;
         this.muscleGroups = muscleGroups;
     }
 
@@ -43,6 +45,14 @@ public class Exercise {
 
     public void setMuscleGroups(List<String> muscleGroups) {
         this.muscleGroups = muscleGroups;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override
