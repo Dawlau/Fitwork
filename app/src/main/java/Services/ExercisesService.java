@@ -67,6 +67,7 @@ public class ExercisesService {
 
                 String exerciseName = jsonObject.get("name").toString();
                 String exerciseDescription = jsonObject.get("description").toString();
+                String exerciseCategory = jsonObject.get("category").toString();
                 ArrayList<String> exercise_muscleGroups = new ArrayList<>();
 
                 JSONArray jsonMuscleGroups = (JSONArray)jsonObject.get("muscle_groups");
@@ -79,6 +80,7 @@ public class ExercisesService {
                 Exercise exercise = new Exercise(
                         exerciseName,
                         exerciseDescription,
+                        exerciseCategory,
                         exercise_muscleGroups
                 );
 
