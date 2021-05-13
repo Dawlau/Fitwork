@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class DashboardActivity extends Activity {
     private Button signOutButton;
     private Button createExercisesFormButton;
+    private Button updateUserDetailsButton;
+    private Button userDetailsGraphs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,22 @@ public class DashboardActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardActivity.this, CreateExerciseActivity.class));
+            }
+        });
+
+        updateUserDetailsButton = (Button) findViewById(R.id.updateDetails);
+        updateUserDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, UserDetailsFirstActivity.class));
+            }
+        });
+
+        userDetailsGraphs = (Button) findViewById(R.id.detailsGraph);
+        userDetailsGraphs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, LineChartActivity.class));
             }
         });
     }
