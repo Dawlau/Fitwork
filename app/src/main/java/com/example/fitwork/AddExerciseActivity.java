@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -44,7 +45,7 @@ public class AddExerciseActivity extends Activity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private final FirebaseUser user = mAuth.getCurrentUser();
 
-    private ArrayList<Exercise> getDefaultExercises() {
+    private void showDefaultExercises() {
         ArrayList<Exercise> exercises = new ArrayList<>();
         db.collection("exercises")
             .get()
@@ -54,22 +55,20 @@ public class AddExerciseActivity extends Activity {
                     if (task.isSuccessful()) {
                         Log.d(TAG, "Successfully fetched exercises from database");
                         QuerySnapshot queryDocumentSnapshots = task.getResult();
-                        for(DocumentSnapshot exercise : queryDocumentSnapshots) {
-                            String name             = exercise.getString("name");
-                            String description      = exercise.getString("description");
-                            List<String> muscles    = (List<String>) exercise.get("muscleGroups");
-                            exercises.add(new Exercise(name, description, muscles));
+                        if(queryDocumentSnapshots != null) {
+                            for (DocumentSnapshot exercise : queryDocumentSnapshots) {
+                                exercises.add(exercise.toObject(Exercise.class));
+                            }
                         }
-                        getCustomExercises(exercises); // propagate the list further to the next step
+                        showCustomExercises(exercises); // propagate the list further to the next step
                     } else {
                         Log.d(TAG, "Failed to fetch exercises from database");
                     }
                 }
             });
-        return exercises;
     }
 
-    private ArrayList<Exercise> getCustomExercises(ArrayList<Exercise> exercises) {
+    private void showCustomExercises(ArrayList<Exercise> exercises) {
         assert user != null;
         String uid = user.getUid();
         db.collection("profiles")
@@ -101,11 +100,10 @@ public class AddExerciseActivity extends Activity {
                                                                 if (task.isSuccessful()) {
                                                                     Log.d(TAG, "Successfully fetched exercises from database");
                                                                     QuerySnapshot queryDocumentSnapshots = task.getResult();
-                                                                    for(DocumentSnapshot exercise : queryDocumentSnapshots) {
-                                                                        String name             = exercise.getString("name");
-                                                                        String description      = exercise.getString("description");
-                                                                        List<String> muscles    = (List<String>) exercise.get("muscleGroups");
-                                                                        exercises.add(new Exercise(name, description, muscles));
+                                                                    if(queryDocumentSnapshots != null) {
+                                                                        for (DocumentSnapshot exercise : queryDocumentSnapshots) {
+                                                                            exercises.add(exercise.toObject(Exercise.class));
+                                                                        }
                                                                     }
                                                                     showExercises(exercises); // propagate the answer forward to the display function
                                                                 } else {
@@ -125,7 +123,23 @@ public class AddExerciseActivity extends Activity {
                         }
                     }
                 });
-        return exercises;
+    }
+
+    private ArrayList<String> formatExercises(ArrayList<Exercise> exercises) {
+        ArrayList<String> formattedExercises = new ArrayList<>();
+        for(Exercise exercise : exercises) {
+            String name = exercise.getName();
+            String category = exercise.getCategory();
+            List<String> muscles = exercise.getMuscleGroups();
+            String result = name + "\n" + category;
+            if (muscles != null) {
+                result += "\n" + muscles.stream()
+                        .map(i -> "" + i)
+                        .collect(Collectors.joining(", "));
+            }
+            formattedExercises.add(result);
+        }
+        return formattedExercises;
     }
 
     private void showExercises(ArrayList<Exercise> exercises) {
@@ -137,33 +151,24 @@ public class AddExerciseActivity extends Activity {
         ChooseExercise.setAdapter(adaptExercises);
     }
 
-    private ArrayList<String> formatExercises(ArrayList<Exercise> exercises) {
-        ArrayList<String> formattedExercises = new ArrayList<>();
-        for(Exercise exercise : exercises) {
-            String name = exercise.getName();
-            List<String> muscles = exercise.getMuscleGroups();
-            String result = name;
-            if (muscles != null) {
-                result += "\n" + muscles.stream()
-                        .map(i -> "" + i)
-                        .collect(Collectors.joining(", "));
-            }
-            formattedExercises.add(result);
-        }
-        for(String e : formattedExercises) {
-            Log.d(TAG, e + "\n");
-        }
-        return formattedExercises;
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_exercise);
 
         ChooseExercise = (ListView) findViewById(R.id.chooseExercise);
+        showDefaultExercises();
 
-        getDefaultExercises();
+        ChooseExercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, "Exercise number " + position + " clicked!!!");
+                Intent intent = new Intent(AddExerciseActivity.this, CreateWorkoutActivity.class);
+                // Exercise exercise = (Exercise) view.getTag();
+                // intent.putExtra("exercise", parent.getChildAt(position));
+                startActivity(new Intent(AddExerciseActivity.this, CreateWorkoutActivity.class));
+            }
+        });
 
         GoBackToWorkoutButton = (Button) findViewById(R.id.goBackToWorkoutButton);
         GoBackToWorkoutButton.setOnClickListener(new View.OnClickListener() {

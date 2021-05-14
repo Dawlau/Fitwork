@@ -18,7 +18,7 @@
     <ListView
         android:id="@+id/chooseExercise"
         android:layout_width="0dp"
-        android:layout_height="650dp"
+        android:layout_height="630dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
