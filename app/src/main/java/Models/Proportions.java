@@ -1,6 +1,7 @@
 package Models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Proportions implements Serializable {
 
@@ -8,6 +9,7 @@ public class Proportions implements Serializable {
     private double weight;
     private UpperBodyProportions upper;
     private LowerBodyProportions lower;
+    private Date recordedDate;
 
     public Proportions() {
     }
@@ -49,5 +51,13 @@ public class Proportions implements Serializable {
 
     public void setLower(LowerBodyProportions lower) {
         this.lower = lower;
+    }
+
+    public Date getRecordedDate() {
+        return recordedDate;
+    }
+
+    public void setRecordedDate(Date recordedDate) {
+        this.recordedDate = recordedDate;
     }
 }

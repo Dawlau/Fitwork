@@ -57,6 +57,7 @@ public class UserDetailsSecondActivity extends Activity {
 
                 Intent intent = new Intent(UserDetailsSecondActivity.this, UserDetailsThirdActivity.class);
                 intent.putExtra("profile", getIntent().getSerializableExtra("profile"));
+                intent.putExtra("firstTime", getIntent().getSerializableExtra("firstTime"));
                 intent.putExtra("proportions", userProportions);
                 startActivity(intent);
             }
