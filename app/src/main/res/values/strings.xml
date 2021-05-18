@@ -12,4 +12,16 @@
     <string name="triceps">triceps circumference</string>
     <string name="thigh">thigh circumference</string>
     <string name="calf">calf circumference</string>
+    <string name="defaultDatePicker">JAN 01 1970</string>
+    <string-array name="muscles_array">
+        <item>Select info</item>
+        <item>Weight</item>
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Chest</item>
+        <item>Back</item>
+        <item>Shoulders</item>
+        <item>Thigh</item>
+        <item>Calf</item>
+    </string-array>
 </resources>

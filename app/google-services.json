@@ -30,6 +30,30 @@
           }
         },
         {
+          "client_id": "221687437932-hvguiu6ol27r9ncp4kbl7acsg551nme1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitwork",
+            "certificate_hash": "f0cde772d0410ab229d6d1e624b1dc794dfbe1bf"
+          }
+        },
+        {
+          "client_id": "221687437932-lmpknlrp6svn0a6hflu8rjdnruflceuf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitwork",
+            "certificate_hash": "13d479a74c6ef3fe7e16de0b1d291ad902db22d8"
+          }
+        },
+        {
+          "client_id": "221687437932-nat1m0kit1dlst0a4ud5r6ll3uni16ab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitwork",
+            "certificate_hash": "a850a1ab0749ebbe6fc9a4470f4d88d00b2b027d"
+          }
+        },
+        {
           "client_id": "221687437932-osutngd1g164cecvb277q98067vkksgi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -19,24 +19,26 @@
         </activity>
         <activity android:name=".GoogleAuth">
         </activity>
+
         <activity android:name=".DashboardActivity">
-
         </activity>
+
         <activity android:name=".UserDetailsFirstActivity">
-
         </activity>
+
         <activity android:name=".UserDetailsSecondActivity">
-
         </activity>
+
         <activity android:name=".UserDetailsThirdActivity">
-
         </activity>
-        <activity android:name=".UserDetailsActivity">
 
+        <activity android:name=".UserDetailsActivity">
         </activity>
 
         <activity android:name=".CreateExerciseActivity">
+        </activity>
 
+        <activity android:name=".LineChartActivity">
         </activity>
 
         <activity android:name=".CreateWorkoutActivity">
