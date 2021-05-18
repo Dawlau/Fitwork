@@ -59,13 +59,15 @@ public class CreateExerciseActivity extends Activity {
 
                 EditText exerciseNameBox = (EditText) findViewById(R.id.exerciseName);
                 EditText exerciseDescriptionBox = (EditText) findViewById(R.id.exerciseDescription);
+                EditText exerciseCategoryBox = (EditText) findViewById(R.id.exerciseCategory);
                 EditText exerciseMuscleGroupsBox = (EditText) findViewById(R.id.exerciseMuscleGroups);
 
                 String exerciseName = exerciseNameBox.getText().toString();
                 String exerciseDescription = exerciseDescriptionBox.getText().toString();
+                String exerciseCategory = exerciseCategoryBox.getText().toString();
                 String[] exerciseMuscleGroups = exerciseMuscleGroupsBox.getText().toString().split("\\n");
 
-                Exercise exercise = new Exercise(exerciseName, exerciseDescription, Arrays.asList(exerciseMuscleGroups));
+                Exercise exercise = new Exercise(exerciseName, exerciseDescription, exerciseCategory, Arrays.asList(exerciseMuscleGroups));
 
                 assert user != null;
                 String uid = user.getUid();

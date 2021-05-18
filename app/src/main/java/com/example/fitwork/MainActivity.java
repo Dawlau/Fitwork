@@ -3,6 +3,7 @@ package com.example.fitwork;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,11 +20,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
+import Services.ExercisesService;
+import Services.OnLoadService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent;
+
+        OnLoadService onLoadService = OnLoadService.getInstance();
+        onLoadService.OnLoad(); // things that need to be loaded at runtime
 
         //Checks if the user is authenticated
         //case 1: the user is authenticated and he is sent to the Dashboard screen
