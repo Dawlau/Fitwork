@@ -45,6 +45,8 @@ public class AddExerciseActivity extends Activity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private final FirebaseUser user = mAuth.getCurrentUser();
 
+    private ArrayList<Exercise> exercises = new ArrayList<>();
+
     private void showDefaultExercises() {
         ArrayList<Exercise> exercises = new ArrayList<>();
         db.collection("exercises")
@@ -127,6 +129,7 @@ public class AddExerciseActivity extends Activity {
 
     private ArrayList<String> formatExercises(ArrayList<Exercise> exercises) {
         ArrayList<String> formattedExercises = new ArrayList<>();
+        this.exercises = new ArrayList<>();
         for(Exercise exercise : exercises) {
             String name = exercise.getName();
             String category = exercise.getCategory();
@@ -138,6 +141,7 @@ public class AddExerciseActivity extends Activity {
                         .collect(Collectors.joining(", "));
             }
             formattedExercises.add(result);
+            this.exercises.add(exercise);
         }
         return formattedExercises;
     }
@@ -159,14 +163,22 @@ public class AddExerciseActivity extends Activity {
         ChooseExercise = (ListView) findViewById(R.id.chooseExercise);
         showDefaultExercises();
 
+        Bundle bundle = getIntent().getExtras();
+        ArrayList<Exercise> currentExercises = bundle.getParcelableArrayList("current exercises");
+
+
         ChooseExercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "Exercise number " + position + " clicked!!!");
                 Intent intent = new Intent(AddExerciseActivity.this, CreateWorkoutActivity.class);
-                // Exercise exercise = (Exercise) view.getTag();
-                // intent.putExtra("exercise", parent.getChildAt(position));
-                startActivity(new Intent(AddExerciseActivity.this, CreateWorkoutActivity.class));
+
+                currentExercises.add(new Exercise(exercises.get(position)));
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("current exercises", currentExercises);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
@@ -174,7 +186,11 @@ public class AddExerciseActivity extends Activity {
         GoBackToWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AddExerciseActivity.this, CreateWorkoutActivity.class));
+                Intent intent = new Intent(AddExerciseActivity.this, CreateWorkoutActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("current exercises", currentExercises);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

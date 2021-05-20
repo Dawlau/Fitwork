@@ -23,6 +23,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -67,7 +68,7 @@ public class CreateExerciseActivity extends Activity {
                 String exerciseCategory = exerciseCategoryBox.getText().toString();
                 String[] exerciseMuscleGroups = exerciseMuscleGroupsBox.getText().toString().split("\\n");
 
-                Exercise exercise = new Exercise(exerciseName, exerciseDescription, exerciseCategory, Arrays.asList(exerciseMuscleGroups));
+                Exercise exercise = new Exercise(exerciseName, exerciseDescription, exerciseCategory, new ArrayList<>(Arrays.asList(exerciseMuscleGroups)));
 
                 assert user != null;
                 String uid = user.getUid();

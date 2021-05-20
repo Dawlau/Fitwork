@@ -23,16 +23,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/showExercises"
-        android:layout_width="272dp"
-        android:layout_height="386dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="144dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/backTestButton"
         android:layout_width="wrap_content"
