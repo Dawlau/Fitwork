@@ -1,28 +1,61 @@
 package Models;
 
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Exercise implements Serializable {
+public class Exercise implements Serializable, Parcelable {
 
+    private static Creator creator;
     private String name;
     private String description;
     private String category;
-    private List<String> muscleGroups; // does not need a copy in constructor/getter since it is only used for CRUD
+    private ArrayList<String> muscleGroups; // does not need a copy in constructor/getter since it is only used for CRUD
 
     public Exercise(){
         this.name = "";
         this.description = "";
-        this.muscleGroups = Collections.emptyList();
+        this.category = "";
+        this.muscleGroups = new ArrayList<>();
     }
 
-    public Exercise(String name, String description, String category, List<String> muscleGroups) {
+    public Exercise(String name, String description, String category, ArrayList<String> muscleGroups) {
         this.name = name;
         this.description = description;
         this.category = category;
         this.muscleGroups = muscleGroups;
     }
+
+    public Exercise(Exercise exercise){
+        this.name = exercise.name;
+        this.description = exercise.description;
+        this.category = exercise.category;
+        this.muscleGroups = new ArrayList<>(exercise.muscleGroups);
+    }
+
+    protected Exercise(Parcel in) {
+        name = in.readString();
+        description = in.readString();
+        category = in.readString();
+        muscleGroups = in.createStringArrayList();
+    }
+
+    public static final Creator<Exercise> CREATOR = new Creator<Exercise>() {
+        @Override
+        public Exercise createFromParcel(Parcel in) {
+            return new Exercise(in);
+        }
+
+        @Override
+        public Exercise[] newArray(int size) {
+            return new Exercise[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -40,11 +73,11 @@ public class Exercise implements Serializable {
         this.description = description;
     }
 
-    public List<String> getMuscleGroups() {
+    public ArrayList<String> getMuscleGroups() {
         return muscleGroups;
     }
 
-    public void setMuscleGroups(List<String> muscleGroups) {
+    public void setMuscleGroups(ArrayList<String> muscleGroups) {
         this.muscleGroups = muscleGroups;
     }
 
@@ -54,6 +87,20 @@ public class Exercise implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(category);
+        dest.writeStringList(muscleGroups);
     }
 
     @Override
