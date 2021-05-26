@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "221687437932-dhf5k728duquhsqbe1075fnlt4lvtoe6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fitwork",
+            "certificate_hash": "d17c6248e13e508176ac9914b1e8bcba46e9126f"
+          }
+        },
+        {
           "client_id": "221687437932-hvguiu6ol27r9ncp4kbl7acsg551nme1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
