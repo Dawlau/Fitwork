@@ -37,7 +37,7 @@ public class UserDetailsActivity extends Activity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        Profile profile = new Profile(user.getUid(), "1999"); ////////////aici pui din form
+        /*Profile profile = new Profile(user.getUid(), "1999"); ////////////aici pui din form
 
         String TAG = "TEST :";
         db.collection("profiles")
@@ -85,7 +85,7 @@ public class UserDetailsActivity extends Activity {
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error adding document", e);
                     }
-                });
+                });*/
 
     }
 }
