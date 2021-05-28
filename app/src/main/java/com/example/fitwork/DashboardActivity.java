@@ -19,6 +19,7 @@ public class DashboardActivity extends Activity {
     private Button createWorkoutFormButton;
     private Button updateUserDetailsButton;
     private Button userDetailsGraphs;
+    private Button searchUsersButton;
 
 
     @Override
@@ -68,6 +69,15 @@ public class DashboardActivity extends Activity {
 
             }
         });
+
+        searchUsersButton = (Button) findViewById(R.id.searchUsers);
+        searchUsersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, SearchUsersActivity.class));
+            }
+        });
+
     }
 
 
