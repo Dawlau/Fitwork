@@ -32,6 +32,8 @@ public class UserDetailsFirstActivity extends Activity {
     private Profile userProfile = new Profile();
     private EditText heightInput;
     private EditText weightInput;
+    private EditText firstNameInput;
+    private EditText lastNameInput;
     private Proportions userProportions = new Proportions();
 
     @Override
@@ -41,7 +43,8 @@ public class UserDetailsFirstActivity extends Activity {
 
         heightInput = (EditText) findViewById(R.id.height);
         weightInput = (EditText) findViewById(R.id.weight);
-
+        firstNameInput = (EditText) findViewById(R.id.firstName);
+        lastNameInput = (EditText) findViewById(R.id.lastName) ;
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -49,6 +52,7 @@ public class UserDetailsFirstActivity extends Activity {
         //TODO: Get birthday from form
         userProfile.setUID(user.getUid());
         userProfile.setBirthday("test");
+
         datePickerButton = (Button) findViewById(R.id.date_picker_button);
         //datePickerButton.setVisibility(View.GONE);
 
@@ -75,7 +79,8 @@ public class UserDetailsFirstActivity extends Activity {
                 String formWeight = weightInput.getText().toString();
                 userProportions.setHeight(Double.parseDouble(formHeight));
                 userProportions.setWeight(Double.parseDouble(formWeight));
-
+                userProfile.setFirstName(firstNameInput.getText().toString());
+                userProfile.setLastName(lastNameInput.getText().toString());
                 //Log.d("test", Integer.toString(datePickerDialog.getDatePicker().getDayOfMonth()));
                 //Log.d("test", Integer.toString(datePickerDialog.getDatePicker().getMonth()));
                 //Log.d("test", Integer.toString(datePickerDialog.getDatePicker().getYear()));
